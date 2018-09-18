@@ -32,20 +32,32 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 
 class UrlSerializer(serializers.HyperlinkedModelSerializer):
+    author = serializers.StringRelatedField(
+        default=serializers.CurrentUserDefault(), read_only=True)
+
     class Meta:
         model = am.Author
         fields = (
             'url',
-            'username'
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+            'bio',
+            'author',
+            'date'
         )
         lookup_field = 'username'
         extra_kwargs = {
-            'url': {'lookup_field': 'username'}
+            'url': {'lookup_field': 'first_name'}
         }
 
 
 class ArticlesSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField(
+        default=serializers.CurrentUserDefault(), read_only=True)
+
     class Meta:
         model = am.Articles
+        fields = '__all__'
         ordering = ('relaease_date', )
-        exclude = ('relaease_date', )

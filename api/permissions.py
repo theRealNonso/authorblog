@@ -19,7 +19,7 @@ class IsOwner(BasePermission):
 
     def has_permission(self, request, view):
         try:
-            am.Articles.objects.get(author__pk=view.kwargs["author_id"],
+            am.Articles.objects.get(author__pk=view.kwargs["author"],
                                     user=request.user)
         except am.Articles.DoesNotExist:
             return False
