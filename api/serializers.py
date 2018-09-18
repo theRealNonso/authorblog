@@ -11,7 +11,7 @@ class AuthorSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, min_length=8)
 
     class Meta:
-        model = am.AppUser
+        model = am.Author
         fields = (
             'first_name',
             'last_name',
@@ -44,8 +44,8 @@ class UrlSerializer(serializers.HyperlinkedModelSerializer):
         }
 
 
-class ArticleSerializer(serializers.ModelSerializer):
+class ArticlesSerializer(serializers.ModelSerializer):
     class Meta:
         model = am.Articles
-        fields = '__all__'
-        ordering = ('date', )
+        ordering = ('relaease_date', )
+        exclude = ('relaease_date', )

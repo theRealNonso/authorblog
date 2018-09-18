@@ -1,15 +1,6 @@
 from rest_framework.permissions import BasePermission
 
-import tontine.api.models as am
-
-
-class IsRelated(BasePermission):
-    """
-    RW: User is related to object
-    """
-
-    def has_object_permission(self, request, view, obj):
-        return obj.author == request.user
+import api.models as am
 
 
 class ArticleUpdatePermission(BasePermission):
@@ -21,7 +12,7 @@ class ArticleUpdatePermission(BasePermission):
         return obj.author == request.user
 
 
-class IsMember(BasePermission):
+class IsOwner(BasePermission):
     """
     DELETE: user is owner of article
     """
