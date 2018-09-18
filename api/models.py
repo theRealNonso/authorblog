@@ -43,7 +43,6 @@ class Author(AbstractUser):
     last_name = models.CharField(max_length=15, default="")
     email = models.EmailField(unique=True)
     bio = models.TextField()
-    slug = models.CharField(max_length=100, unique=True)
     date = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
