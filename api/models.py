@@ -38,7 +38,7 @@ class AuthorManager(BaseUserManager):
 
 
 class Author(AbstractUser):
-    username = models.CharField(max_length=5, unique=False)
+    username = models.CharField(max_length=5, unique=True)
     first_name = models.CharField(max_length=15, default="")
     last_name = models.CharField(max_length=15, default="")
     email = models.EmailField(unique=True)
